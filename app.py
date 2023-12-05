@@ -1,36 +1,46 @@
-from flask import Flask
+import secrets
+from flask import Flask, render_template
 import coremltools as ct
+from flask_bootstrap import Bootstrap
+from flask_wtf.csrf import CSRFProtect
+from src.forms.diabetes import DiabetesForm
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='src/templates')
+app.secret_key = secrets.token_urlsafe(16)
+
+bootstrap = Bootstrap(app)
+csrf = CSRFProtect(app)
+
+diabetes_model = ct.models.MLModel('models/diabetes.mlmodel')
 
 
-@app.route('/')
-def hello():
-    return '<h1>Disease Classification</h1>'
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    form = DiabetesForm()
 
+    if form.validate_on_submit():
+        data = form.data
+        return diabetes_model.predict({
+            'Age': int(data['age']),
+            'Sex': int(data['sex']),
+            'HighChol': int(data['high_chol']),
+            'CholCheck': int(data['chol_check']),
+            'BMI': data['bmi'],
+            'Smoker': int(data['smoker']),
+            'HeartDiseaseorAttack': int(data['heart_disease_or_attack']),
+            'PhysActivity': int(data['phys_activity']),
+            'Fruits': int(data['fruits']),
+            'Veggies': int(data['veggies']),
+            'HvyAlcoholConsump': int(data['hvy_alcohol_consump']),
+            'GenHlth': int(data['gen_hlth']),
+            'MentHlth': data['men_hlth'],
+            'PhysHlth': data['phys_hlth'],
+            'DiffWalk': int(data['diff_walk']),
+            'Stroke': int(data['stroke']),
+            'HighBP': int(data['high_bp'])
+        })
 
-@app.route('/predict')
-def predict():
-    diabetes_model = ct.models.MLModel('models/diabetes.mlmodel')
-    return diabetes_model.predict({
-        'Age': 13,
-        'Sex': 0,
-        'HighChol': 0,
-        'CholCheck': 1,
-        'BMI': 25,
-        'Smoker': 0,
-        'HeartDiseaseorAttack': 0,
-        'PhysActivity': 0,
-        'Fruits': 0,
-        'Veggies': 0,
-        'HvyAlcoholConsump': 4,
-        'GenHlth': 14,
-        'MentHlth': 14,
-        'PhysHlth': 1,
-        'DiffWalk': 0,
-        'Stroke': 1,
-        'HighBP': 0
-    })
+    return render_template('form.html', form=form)
 
 
 if __name__ == "__main__":

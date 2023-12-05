@@ -6,14 +6,20 @@
 
 ## Development
 
-- mlmodel can be used on macOS version 10.13 or later
-- docker image `sickcodes/docker-osx` does not work either
+- `.mlmodel` can only be used on macOS version 10.13 or later
+- tried docker image `sickcodes/docker-osx`, but does not work
+
+### Virtual ENV
 
 ```python3 -m venv disease-classification```
 
 ```source disease-classification/bin/activate```
 
+### Install depedencies
+
 ```pip3 install -r requirements.txt```
+
+### Running the app
 
 ```python3 app.py```
 
