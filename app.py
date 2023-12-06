@@ -4,6 +4,7 @@ import coremltools as ct
 from flask_bootstrap import Bootstrap
 from flask_wtf.csrf import CSRFProtect
 from src.forms.diabetes import DiabetesForm
+from src.forms.stroke import StrokeForm
 
 app = Flask(__name__, template_folder='src/templates')
 app.secret_key = secrets.token_urlsafe(16)
@@ -12,10 +13,16 @@ bootstrap = Bootstrap(app)
 csrf = CSRFProtect(app)
 
 diabetes_model = ct.models.MLModel('models/diabetes.mlmodel')
+stroke_model = ct.models.MLModel('models/stroke.mlmodel')
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def index():
+    return '<h1>Disease Classification AutoML</h1>'
+
+
+@app.route('/diabetes', methods=['GET', 'POST'])
+def diabetes():
     form = DiabetesForm()
 
     if form.validate_on_submit():
@@ -40,7 +47,29 @@ def index():
             'HighBP': int(data['high_bp'])
         })
 
-    return render_template('form.html', form=form)
+    return render_template('form.html', form=form, name='diabetes')
+
+
+@app.route('/stroke', methods=['GET', 'POST'])
+def stroke():
+    form = StrokeForm()
+
+    if form.validate_on_submit():
+        data = form.data
+        return stroke_model.predict({
+            'Sex': int(data['sex']),
+            'Age': int(data['age']),
+            'Hypertension': int(data['hypertension']),
+            'HeartDisease': int(data['heart_disease']),
+            'EverMarried': int(data['ever_married']),
+            'WorkType': int(data['work_type']),
+            'ResidenceType': int(data['residence_type']),
+            'AvgGlucoseLevel': data['avg_glucose_level'],
+            'BMI': data['bmi'],
+            'SmokingStatus': int(data['smoking_status'])
+        })
+
+    return render_template('form.html', form=form, name='stroke')
 
 
 if __name__ == "__main__":

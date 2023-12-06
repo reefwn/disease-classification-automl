@@ -13,6 +13,13 @@
 |1|101|69%|94%|0.8|
 |0|100|91%|58%|0.71|
 
+### Stroke
+
+|class|count|precision|recall|f1-score|
+|---|---|---|---|---|
+|1|100|91%|92%|0.92|
+|0|100|92%|91%|0.91|
+
 ## Development
 
 - `.mlmodel` can only be used on macOS version 10.13 or later
