@@ -4,9 +4,22 @@
 
 [Kaggle | Diabetes, Hypertension and Stroke Prediction](https://www.kaggle.com/datasets/prosperchuks/health-dataset)
 
-## Model Performance
+## Model
 
 ### Diabetes
+
+#### Settings
+
+- Algorithm: Boosted Tree
+- Max Iterations: 10
+- Max Depth: 6
+- Min Loss Reduction: 0
+- Min Child Weight: 0.1
+- Row Subsample Ratio: 1
+- Column Subsample Ratio: 1
+- Step Size: 0.3
+
+#### Evaluation
 
 |class|count|precision|recall|f1-score|
 |---|---|---|---|---|
@@ -14,6 +27,18 @@
 |0|100|91%|58%|0.71|
 
 ### Stroke
+
+#### Settings
+
+- Algorithm: Random Forest
+- Max Iterations: 10
+- Max Depth: 6
+- Min Loss Reduction: 0
+- Min Child Weight: 0.1
+- Row Subsample Ratio: 0.8
+- Column Subsample Ratio: 0.8
+
+#### Evaluation
 
 |class|count|precision|recall|f1-score|
 |---|---|---|---|---|
@@ -44,7 +69,7 @@ python3 app.py
 ## Technologies & IDE
 
 <div>
-  <img style="float: left" src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Flask_logo.svg" height="48" alt="flask"> &nbsp;
   <img style="float: left" src="https://developer.apple.com/assets/elements/icons/create-ml-framework/create-ml-framework-96x96_2x.png" height="48" alt="create-ml"> &nbsp;
+  <img style="float: left" src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Flask_logo.svg" height="48" alt="flask"> &nbsp;
   <img style="float: left" src="https://code.visualstudio.com/assets/updates/1_35/logo-stable.png" height="48" alt="vscode">
 </div>
