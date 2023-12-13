@@ -6,15 +6,9 @@
 
 ## Create ML
 
-### Data
-
 ![data](https://github.com/reefwn/disease-classification-automl/blob/main/images/create-ml/data.png?raw=true)
 
-### Training
-
 ![training](https://github.com/reefwn/disease-classification-automl/blob/main/images/create-ml/training.png?raw=true)
-
-### Output
 
 ![output](https://github.com/reefwn/disease-classification-automl/blob/main/images/create-ml/output.png?raw=true)
 
