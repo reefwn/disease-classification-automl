@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import SelectField, RadioField, IntegerField, SubmitField
-from wtforms.validators import DataRequired, NumberRange
+from wtforms.validators import DataRequired, InputRequired, NumberRange
 
 
 class DiabetesForm(FlaskForm):
@@ -112,11 +112,11 @@ class DiabetesForm(FlaskForm):
     )
     men_hlth = IntegerField(
         'Now thinking about your mental health, which includes stress, depression, and problems with emotions, for how many days during the past 30 days was your mental health not good?',
-        validators=[DataRequired(), NumberRange(min=0, max=30)],
+        validators=[InputRequired(), NumberRange(min=0, max=30)],
     )
     phys_hlth = IntegerField(
         'Now thinking about your physical health, which includes physical illness and injury, for how many days during the past 30 days was your physical health not good?',
-        validators=[DataRequired(), NumberRange(min=0, max=30)],
+        validators=[InputRequired(), NumberRange(min=0, max=30)],
     )
     diff_walk = RadioField(
         'Do you have serious difficulty walking or climbing stairs?',

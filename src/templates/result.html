@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Disease Classification | Result
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container my-4">
+  <div class="row">
+    <div class="col-md-10 col-lg-8 mx-lg-auto mx-md-auto">
+
+      <h1 class="pb-2">Disease Classification using AutoML</h1>
+
+      <p class="lead">This is your result!</p>
+
+      <p><strong>Disease:</strong> <em>{{ name }}</em></p>
+      <p><strong>Prediction:</strong> <em>{{ predict }}</em></p>
+      <p><strong>Confidence:</strong> <em>{{ confidence }}</em></p>
+
+      <p class="mt-4"><a href="{{ url_for('index') }}" class="btn btn-primary">Back to Home</a></p>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -5,6 +5,7 @@ from flask_bootstrap import Bootstrap
 from flask_wtf.csrf import CSRFProtect
 from src.forms.diabetes import DiabetesForm
 from src.forms.stroke import StrokeForm
+from src.utils import to_diabetes_form, to_stroke_form, to_display
 
 app = Flask(__name__, template_folder='src/templates')
 app.secret_key = secrets.token_urlsafe(16)
@@ -23,53 +24,40 @@ def index():
 
 @app.route('/diabetes', methods=['GET', 'POST'])
 def diabetes():
+    name = 'diabetes'
     form = DiabetesForm()
 
     if form.validate_on_submit():
-        data = form.data
-        return diabetes_model.predict({
-            'Age': int(data['age']),
-            'Sex': int(data['sex']),
-            'HighChol': int(data['high_chol']),
-            'CholCheck': int(data['chol_check']),
-            'BMI': data['bmi'],
-            'Smoker': int(data['smoker']),
-            'HeartDiseaseorAttack': int(data['heart_disease_or_attack']),
-            'PhysActivity': int(data['phys_activity']),
-            'Fruits': int(data['fruits']),
-            'Veggies': int(data['veggies']),
-            'HvyAlcoholConsump': int(data['hvy_alcohol_consump']),
-            'GenHlth': int(data['gen_hlth']),
-            'MentHlth': data['men_hlth'],
-            'PhysHlth': data['phys_hlth'],
-            'DiffWalk': int(data['diff_walk']),
-            'Stroke': int(data['stroke']),
-            'HighBP': int(data['high_bp'])
-        })
+        data = to_diabetes_form(form.data)
+        result = diabetes_model.predict(data)
+        display = to_display(name, result)
+        return render_template(
+            'result.html',
+            name=display['name'],
+            predict=display['predict'],
+            confidence=display['confidence']
+        )
 
-    return render_template('form.html', form=form, name='diabetes')
+    return render_template('form.html', form=form, name=name)
 
 
 @app.route('/stroke', methods=['GET', 'POST'])
 def stroke():
+    name = 'stroke'
     form = StrokeForm()
 
     if form.validate_on_submit():
-        data = form.data
-        return stroke_model.predict({
-            'Sex': int(data['sex']),
-            'Age': int(data['age']),
-            'Hypertension': int(data['hypertension']),
-            'HeartDisease': int(data['heart_disease']),
-            'EverMarried': int(data['ever_married']),
-            'WorkType': int(data['work_type']),
-            'ResidenceType': int(data['residence_type']),
-            'AvgGlucoseLevel': data['avg_glucose_level'],
-            'BMI': data['bmi'],
-            'SmokingStatus': int(data['smoking_status'])
-        })
+        data = to_stroke_form(form.data)
+        result = stroke_model.predict(data)
+        display = to_display(name, result)
+        return render_template(
+            'result.html',
+            name=display['name'],
+            predict=display['predict'],
+            confidence=display['confidence']
+        )
 
-    return render_template('form.html', form=form, name='stroke')
+    return render_template('form.html', form=form, name=name)
 
 
 if __name__ == "__main__":
