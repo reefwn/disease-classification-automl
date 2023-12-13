@@ -4,6 +4,20 @@
 
 [Kaggle | Diabetes, Hypertension and Stroke Prediction](https://www.kaggle.com/datasets/prosperchuks/health-dataset)
 
+## Create ML (Preview)
+
+### Data
+
+![data](https://github.com/reefwn/disease-classification-automl/blob/main/images/data.png?raw=true)
+
+### Training
+
+![training](https://github.com/reefwn/disease-classification-automl/blob/main/images/training.png?raw=true)
+
+### Output
+
+![output](https://github.com/reefwn/disease-classification-automl/blob/main/images/output.png?raw=true)
+
 ## Model
 
 ### Diabetes
@@ -71,5 +85,7 @@ python3 app.py
 <div>
   <img style="float: left" src="https://developer.apple.com/assets/elements/icons/create-ml-framework/create-ml-framework-96x96_2x.png" height="48" alt="create-ml"> &nbsp;
   <img style="float: left" src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Flask_logo.svg" height="48" alt="flask"> &nbsp;
+  <img style="float: left" src="https://wtforms.readthedocs.io/en/3.1.x/_static/logo_joined.svg" height="48" alt="wtform"> &nbsp;
+  <img style="float: left" src="https://bootstrap-flask.readthedocs.io/en/stable/_static/bootstrap-flask-logo.png" height="48" alt="bootstrap-flask"> &nbsp;
   <img style="float: left" src="https://code.visualstudio.com/assets/updates/1_35/logo-stable.png" height="48" alt="vscode">
 </div>
