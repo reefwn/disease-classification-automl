@@ -2,7 +2,7 @@
 {% from 'bootstrap5/form.html' import render_form %}
 
 {% block title %}
-Diabetes Prediction
+Disease Classification | {{ name.capitalize() }}
 {% endblock %}
 
 
@@ -12,13 +12,11 @@ Diabetes Prediction
   <div class="row">
     <div class="col-md-10 col-lg-8 mx-lg-auto mx-md-auto">
 
-      <h1 class="pt-5 pb-2">Disease Classification using AutoML!</h1>
+      <h1 class="pt-5 pb-2">Disease Classification using AutoML</h1>
 
       <p class="lead">This page is a form for {{ name }} prediction, <em>let's try and enjoy!</em></p>
 
       {{ render_form(form) }}
-
-      <p class="pt-5"><strong>{{ message }}</strong></p>
 
     </div>
   </div>

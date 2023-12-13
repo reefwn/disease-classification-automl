@@ -18,7 +18,7 @@ stroke_model = ct.models.MLModel('models/stroke.mlmodel')
 
 @app.route('/')
 def index():
-    return '<h1>Disease Classification AutoML</h1>'
+    return render_template('index.html')
 
 
 @app.route('/diabetes', methods=['GET', 'POST'])

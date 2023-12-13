@@ -1,10 +1,10 @@
-# disease-classification-automl
+# Disease Classification (AutoML) Web Application
 
 ## Dataset
 
 [Kaggle | Diabetes, Hypertension and Stroke Prediction](https://www.kaggle.com/datasets/prosperchuks/health-dataset)
 
-## Create ML (Preview)
+## Create ML
 
 ### Data
 
